@@ -1,15 +1,17 @@
-import App from '../src/index.js'
+import App from '../src/app.js'
 
 const app = new App(document.body)
 
 app.state = {
-    username: 'admin',
-    email: 'admin@main.com',
-    age: 55
+    firstname: 'john',
+    lastname: 'doe',
+
+    get fullname(){
+        return `${this.firstname} ${this.lastname}`
+    }
 }
 
 document.getElementById('submit').onclick = () => {
-    app.render()
     console.table(app.state)
-    app.state = { ...app.state, username: 'admin2' }
+    app.state = { ...app.state, firstname: 'admin2' }   /// getter not working properly
 }
