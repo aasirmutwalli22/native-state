@@ -1,0 +1,13 @@
+.form{
+    display: flex;
+    flex-flow: column;
+    max-width: 400px;
+    width: 100%;
+    margin: auto;
+    gap: 10px;
+    background-color: white;
+    padding: 10px;
+}
+body {
+    background-color: indianred;
+}
