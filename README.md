@@ -36,7 +36,15 @@ console.log(app.state)
 --------------------------------------------------
 ### 5. Example using useState api
 ```js
-const firstname = app.useState('firstname')
+/**
+ *Access single property of app state
+ * @param {} key key of state to update
+ * @param {} completeRender 
+ * true: to render complete app, 
+ * false: only render respective state
+ * @returns state for key
+ */
+const firstname = app.useState('firstname', true)
 // get value
 console.log(firstname.value)
 // set value

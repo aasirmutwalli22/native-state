@@ -11,18 +11,23 @@
 </head>
 
 <body id="body" class="adb">
-    <form class="form" action="#">
+    <form class="form" action="#" name="form">
         <h4>User data</h4>
-        <input type="text" placeholder="Enter username" model="firstname">
-        <input type="text" placeholder="Enter password" model="lastname">
-        <span text="firstname"></span>
-        <span text="fullname"></span>
+        <input type="text" placeholder="Enter first name" model="firstname">
+        <input type="text" placeholder="Enter last name" model="lastname">
+        <span>
+            Hello
+            <span text="firstname"></span>
+            <span text="lastname"></span>
+            <span text="fullname"></span>
+        </span>
         <button type="reset">reset</button>
-        <button type="button" id="submit">print</button>
+        <button type="submit" id="submit">print</button>
         <ul elements="tasks" template="task"></ul>
     </form>
 </body>
 <template id="task">
     <li element="task">a</li>
 </template>
+
 </html>
