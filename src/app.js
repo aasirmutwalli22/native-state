@@ -1,12 +1,15 @@
 "use strict";
 
+export const ElementQueries = [
+    { query: 'model', property: 'value', isInput: true },
+    { query: 'text', property: 'textContent' },
+]
+
 export default class App {
-    #query_input = 'model'
-    #query_text = 'text'
-    #elementQuery = [
-        { query: this.#query_input, property: 'value' },
-        { query: this.#query_text, property: 'textContent' },
-    ]
+    /** 
+     * set queries for scanning app dom
+    */
+    #queries = []
     /**
      * Array holding uniq keys of elements and state
      */
@@ -32,15 +35,15 @@ export default class App {
      * Filter app elements with type inputs
      */
     get #inputElements() {
-        return this.#elements
-            .filter(item => item.query === this.#query_input)
+        return this.#elements.filter(item => item.isInput)
     }
     /**
      * Input field listener
      */
     #inputListener = (event) => {
         this.state[event.getAttribute('model')] = event.value
-        this.renderWithKey(event.getAttribute('model'))
+        this.render()   // getter depending on input change will not work if renderWithKey is called
+        // this.renderWithKey(event.getAttribute('model'))
     }
     /**
      * Add oninput event listener for app state update
@@ -65,6 +68,24 @@ export default class App {
      */
     set state(value) {
         this.#state = value
+        this.render()
+    }
+    get elements () {
+        return this.#elements
+    }
+
+    /**
+     * Get current queries of app
+    */
+    get queries(){
+        return this.#queries;
+    }
+    /** 
+     * Set new queries to app
+    */
+    set queries(value = []) {
+        this.#queries = value
+        this.scan()
         this.render()
     }
     /**
@@ -96,7 +117,7 @@ export default class App {
      */
     scan = () => {
         // scan through DOM and extract elements with defined queries
-        this.#elementQuery.forEach(query => Array
+        this.#queries.forEach(query => Array
             .from(this.root.querySelectorAll(`[${query.query}]`))
             .map(item => ({
                 key: item.getAttribute(query.query),
@@ -106,6 +127,8 @@ export default class App {
             .forEach(item => this.#elements.push(item)))
         // extract keys from elements for state
         this.#elementKeys = Array.from(new Set(this.#elements.map(item => item.key)))
+        // add input listeners
+        this.#addInputListener()
     }
     /**
      * Update single DOM data with current application state
@@ -113,7 +136,9 @@ export default class App {
     renderWithKey = (key) => {
         this.#elements
             .filter(item => item.key === key)
-            .forEach(item => item.element[item.property] = this.#state[item.key.toString()])
+            .forEach(item => {
+                return item.element[item.property] = this.#state[item.key];
+            })
     }
     /**
      * Update DOM data with current application state
@@ -131,7 +156,7 @@ export default class App {
     /**
      * reset app state
      */
-    resetState(){
+    resetState() {
         this.state = {}
     }
 }
