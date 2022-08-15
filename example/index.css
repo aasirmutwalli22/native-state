@@ -86,3 +86,10 @@ button:active {
     box-shadow: none;
     /* backdrop-filter: none; */
 }
+
+/* extension on hidden attribute */
+/* hidden is global attribute, all elements support hidden attribute */
+/* but cannot unhide by setting false */
+[hidden=false] {
+    display: initial;
+}

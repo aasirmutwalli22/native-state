@@ -16,11 +16,12 @@
         <h4>User data</h4>
         <input type="text" placeholder="Enter first name" model="firstname">
         <input type="text" placeholder="Enter last name" model="lastname">
+        <input type="file" accept="image/*" name="profile">
         <span>
-            Hello
+            <span>Hello</span>
             <span text="fullname"></span>
         </span>
-        <button type="reset">reset</button>
+        <button type="reset" hide="hideReset">reset</button>
         <button type="submit" id="submit" disable="formValid">print</button>
         <ul elements="tasks" template="task"></ul>
     </form>
