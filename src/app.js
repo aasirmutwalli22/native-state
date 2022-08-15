@@ -136,9 +136,7 @@ export default class App {
     renderWithKey = (key) => {
         this.#elements
             .filter(item => item.key === key)
-            .forEach(item => {
-                return item.element[item.property] = this.#state[item.key];
-            })
+            .forEach(item => item.element[item.property] = this.#state[item.key])
     }
     /**
      * Update DOM data with current application state
