@@ -4,6 +4,9 @@ State management library for venilla javascript
 
 ## usage
 --------------------------------------------------
+### 0. Note
+- with security issue from javascript cannot bind value property of input type file
+--------------------------------------------------
 ### 1. Initialize app in script
 ```js
 import App from '../src/app.js'
