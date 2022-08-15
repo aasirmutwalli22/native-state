@@ -51,3 +51,22 @@ console.log(firstname.value)
 firstname.value = 8
 ```
 --------------------------------------------------
+### 6. Reset complete app state
+```js 
+// reset app's complete state 
+// resetting will also remove all getters of app state
+app.resetState()
+```
+--------------------------------------------------
+### 7. Add custom queries to app
+```js 
+// where 
+// query: custom attribute of html element
+// property: property of html element to be updated
+// isInput: to add oninput event to html element
+app.queries = [
+    { query: 'model', property: 'value', isInput: true },
+    { query: 'text', property: 'textContent' },
+    { query: 'disable', property: 'disabled' },
+]
+```
